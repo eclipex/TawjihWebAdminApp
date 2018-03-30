@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Filieres list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Designation</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for filiere in filieres %}
+            <tr>
+                <td><a href="{{ path('filieres_show', { 'id': filiere.id }) }}">{{ filiere.designation }}</a></td>
+                <td>{{ filiere.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('filieres_show', { 'id': filiere.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('filieres_edit', { 'id': filiere.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        <div class="text-center">{{ knp_pagination_render(filieres) }}</div>
+
+    <ul>
+        <li>
+            <a href="{{ path('filieres_new') }}">Create a new filiere</a>
+        </li>
+    </ul>
+{% endblock %}

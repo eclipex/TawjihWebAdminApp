@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Etablissement</h1>
+
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th>Designation</th>
+                <td>{{ etablissement.designation }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ etablissement.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+            
+
+    <ul>
+        <li>
+            <a href="{{ path('etablissements_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('etablissements_edit', { 'id': etablissement.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

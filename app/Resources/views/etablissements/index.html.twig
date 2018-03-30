@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Etablissements list</h1>
+
+    <table class="table table-hover table-responsive text-center ">
+        <thead>
+            <tr>
+                <th>Designation</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for etablissement in etablissements %}
+            <tr>
+                <td><a href="{{ path('etablissements_show', { 'id': etablissement.id }) }}">{{ etablissement.designation }}</a></td>
+                <td>{{ etablissement.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('etablissements_show', { 'id': etablissement.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('etablissements_edit', { 'id': etablissement.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            
+        {% endfor %}
+        
+        </tbody>
+        
+    </table>
+        <div class="pagination">{{ knp_pagination_render(etablissements) }}</div>
+    <ul>
+        <li>
+            <a href="{{ path('etablissements_new') }}">Create a new etablissement</a>
+        </li>
+    </ul>
+{% endblock %}
