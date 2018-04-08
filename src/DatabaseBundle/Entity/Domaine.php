@@ -2,45 +2,33 @@
 
 namespace DatabaseBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Domaine
+ *
+ * @ORM\Table(name="domaine", uniqueConstraints={@ORM\UniqueConstraint(name="designation", columns={"designation_domaine"})})
+ * @ORM\Entity
  */
 class Domaine
 {
     /**
-     * @var string
-     */
-    private $designation;
-
-    /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
-
     /**
-     * Set designation
+     * @var string
      *
-     * @param string $designation
-     *
-     * @return Domaine
+     * @ORM\Column(name="designation_domaine", type="string", length=255, nullable=false)
      */
-    public function setDesignation($designation)
-    {
-        $this->designation = $designation;
+    private $designationDomaine;
 
-        return $this;
-    }
 
-    /**
-     * Get designation
-     *
-     * @return string
-     */
-    public function getDesignation()
-    {
-        return $this->designation;
-    }
 
     /**
      * Get id
@@ -51,5 +39,28 @@ class Domaine
     {
         return $this->id;
     }
-}
 
+    /**
+     * Set designationDomaine
+     *
+     * @param string $designationDomaine
+     *
+     * @return Domaine
+     */
+    public function setDesignationDomaine($designationDomaine)
+    {
+        $this->designationDomaine = $designationDomaine;
+
+        return $this;
+    }
+
+    /**
+     * Get designationDomaine
+     *
+     * @return string
+     */
+    public function getDesignationDomaine()
+    {
+        return $this->designationDomaine;
+    }
+}

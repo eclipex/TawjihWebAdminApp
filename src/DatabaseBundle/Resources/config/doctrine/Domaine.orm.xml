@@ -2,12 +2,12 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="DatabaseBundle\Entity\Domaine" table="domaine">
     <unique-constraints>
-      <unique-constraint name="designation" columns="designation"/>
+      <unique-constraint name="designation" columns="designation_domaine"/>
     </unique-constraints>
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="designation" type="string" column="designation" length="255" nullable="false">
+    <field name="designationDomaine" type="string" column="designation_domaine" length="255" nullable="false">
       <options>
         <option name="fixed"/>
       </options>

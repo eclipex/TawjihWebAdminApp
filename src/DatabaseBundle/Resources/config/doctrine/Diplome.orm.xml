@@ -2,9 +2,9 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="DatabaseBundle\Entity\Diplome" table="diplome">
     <indexes>
-      <index name="diplome_ibfk_1" columns="etablissement"/>
       <index name="filiere" columns="filiere"/>
-      <index name="domaine" columns="domaine"/>
+      <index name="etablissement" columns="etablissement"/>
+      <index name="section" columns="section"/>
     </indexes>
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
@@ -24,19 +24,19 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <many-to-one field="etablissement" target-entity="Etablissements" fetch="LAZY">
+    <many-to-one field="filiere" target-entity="Filiere" fetch="LAZY">
       <join-columns>
-        <join-column name="etablissement" referenced-column-name="designation"/>
+        <join-column name="filiere" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="filiere" target-entity="Filieres" fetch="LAZY">
+    <many-to-one field="etablissement" target-entity="Etablissement" fetch="LAZY">
       <join-columns>
-        <join-column name="filiere" referenced-column-name="designation"/>
+        <join-column name="etablissement" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="domaine" target-entity="Domaine" fetch="LAZY">
+    <many-to-one field="section" target-entity="Section" fetch="LAZY">
       <join-columns>
-        <join-column name="domaine" referenced-column-name="designation"/>
+        <join-column name="section" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
   </entity>

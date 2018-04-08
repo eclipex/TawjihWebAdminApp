@@ -19,7 +19,7 @@ security:
                 csrf_token_generator: security.csrf.token_manager
                 # if you are using Symfony < 2.8, use the following config instead:
                 # csrf_provider: form.csrf_provider
-                default_target_path: filieres_index      
+                default_target_path: filiere_index      
             logout: 
                 path:   /logout
                 target: /login

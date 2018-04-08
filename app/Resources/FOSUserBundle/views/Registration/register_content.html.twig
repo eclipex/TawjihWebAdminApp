@@ -1,8 +1,53 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}" />
-    </div>
-{{ form_end(form) }}
+
+
+<div class="login_wrapper">
+    <div class="animate form login_form">
+        <section class="login_content">
+            <form action="" method="post">
+                
+                <h1>Inscription Admin</h1>
+                
+                {% set messages = [] %}
+                    {% for child in form.children %}
+                        {% for error in child.vars.errors %}
+                            {% set messages = messages|merge([error.message]) %}
+                        {% endfor %}
+                    {% endfor %}
+                    {% if messages|length %}
+                        <div class="alert alert-danger  " role="alert">
+                            {% for message in messages %}
+                                <p class=" text-center ">{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                {% endif %}
+                {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register') }) }}
+                
+                     {{ form_widget(form.email ,{'attr': {'placeholder':'E-mail', 'class' : 'form-control text-center'} }) }}     
+                     {{ form_widget(form.nom ,{'attr': {'placeholder':'Nom et prenom', 'class' : 'form-control text-center'} }) }}
+                     {{ form_widget(form.username ,{'attr': {'placeholder':'Pseudo', 'class' : 'form-control text-center'} }) }}
+                     {{ form_widget(form.plainPassword.first ,{'attr': {'minlength': '6','placeholder':'Mot de passe', 'class' : 'form-control text-center'} }) }}
+                     {{ form_widget(form.plainPassword.second ,{'attr': {'minlength': '6','placeholder':'Confirmez le mot de passe', 'class' : '  text-center form-control'} }) }}
+                     <div class="btn-group">
+                        <input type="submit" class="btn btn-success text-center" value="{{ 'registration.submit'|trans }}" />
+                     </div>
+                    {{ form_end(form) }}
+                    
+                
+            </form>
+                       
+             <div class="separator">
+                 <p class="change_link">Vous avez deja un compte??</br>
+                  <a href="{{ path('fos_user_security_login') }}"class="to_register"> Connectez vous </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+                <div>
+                  <p>©2018 All Rights Reserved. Bootstrap 3 template. Privacy and Terms</p>
+                </div>
+              </div>
+          </section>
+        </div>
+</div>

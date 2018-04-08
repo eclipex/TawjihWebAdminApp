@@ -3,41 +3,54 @@
 {% block body %}
     <h1>Diplomes list</h1>
 
-    <table>
+    <a class="btn btn-success center-block" href="{{ path('diplome_new') }}">Creer un nouveau diplome</a>
+    <br>
+    <table id="datatable-buttons" class="table table-hover text-center">
         <thead>
             <tr>
-                <th>Code</th>
-                <th>Score</th>
-                <th>Capacite</th>
-                <th>Id</th>
-                <th>Actions</th>
+                <th class="text-center">Code</th>
+                <th class="text-center">Score</th>
+                <th class="text-center">Capacite</th>
+                <th class="text-center">Section</th>
+                <th class="text-center">Filiere</th>
+                <th class="text-center">Domaine</th>
+                <th class="text-center">Etablissement</th>
+                <th class="text-center" >Actions</th>
             </tr>
         </thead>
         <tbody>
+            
         {% for diplome in diplomes %}
             <tr>
-                <td><a href="{{ path('diplome_show', { 'id': diplome.id }) }}">{{ diplome.code }}</a></td>
+                <td><a class="text-bold text-error text-" href="{{ path('diplome_show', { 'id': diplome.id }) }}"><u>{{ diplome.code }}</u></a></td>
                 <td>{{ diplome.score }}</td>
                 <td>{{ diplome.capacite }}</td>
-                <td>{{ diplome.id }}</td>
+                <td>{{diplome.section.designationSection }}</td>
+                <td>{{ diplome.filiere.designationFiliere }}</td>
+                {% if diplome.filiere.domaine != null %}
+                    <td>{{ diplome.filiere.domaine.designationDomaine }}</td>
+                {% else  %}
+                    <td> Veillez inserer un domaine </td>
+                {% endif %}
+                <td>{{ diplome.etablissement.designationEtablissement }}</td>
+                
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('diplome_show', { 'id': diplome.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('diplome_edit', { 'id': diplome.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <div class="text-center  ">
+                        <div class="text-center  ">
+                            <a class="btn btn-info" href="{{ path('diplome_show', { 'id': diplome.id }) }}">show</a>
+                            <a class="btn btn-info" href="{{ path('diplome_edit', { 'id': diplome.id }) }}">edit</a>
+                        </div>
+                    </div>
                 </td>
             </tr>
+            
         {% endfor %}
         </tbody>
     </table>
-<div class="pagination">{{ knp_pagination_render(diplomes) }}</div>
+
     <ul>
         <li>
-            <a href="{{ path('diplome_new') }}">Create a new diplome</a>
+            
         </li>
     </ul>
 {% endblock %}

@@ -5,8 +5,7 @@ namespace DatabaseBundle\Controller;
 use DatabaseBundle\Entity\Domaine;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Domaine controller.
@@ -26,7 +25,8 @@ class DomaineController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $domaines = $em->getRepository('DatabaseBundle:Domaine')->findAll();
-        $domainesPaginated = $this->get('knp_paginator')->paginate ($domaines,$request->query->get('page', 1),10);
+        $domainesPaginated  = $this->get('knp_paginator')
+                ->paginate($domaines,$request->query->get('page', 1),10);
 
         return $this->render('domaine/index.html.twig', array(
             'domaines' => $domainesPaginated,

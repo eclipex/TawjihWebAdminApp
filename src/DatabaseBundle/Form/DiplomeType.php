@@ -3,9 +3,9 @@
 namespace DatabaseBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class DiplomeType extends AbstractType
 {
@@ -18,20 +18,20 @@ class DiplomeType extends AbstractType
                 ->add('score')
                 ->add('capacite')
                 ->add('etablissement', EntityType::class,
-                        array(
-                            'class'=> 'DatabaseBundle:Etablissements',
-                            'choice_label' =>'designation'
-                        ))
+                array(
+                'class'=> 'DatabaseBundle:Etablissement',
+                'choice_label' =>'designation_etablissement'
+                ))
                 ->add('filiere', EntityType::class,
-                        array(
-                            'class'=> 'DatabaseBundle:Filieres',
-                            'choice_label' =>'designation'
-                        ))
-                ->add('domaine', EntityType::class,
-                        array(
-                            'class'=> 'DatabaseBundle:Domaine',
-                            'choice_label' =>'designation'
-                        ));
+                array(
+                'class'=> 'DatabaseBundle:Filiere',
+                'choice_label' =>'designation_filiere'
+                ))
+                ->add('section', EntityType::class,
+                array(
+                'class'=> 'DatabaseBundle:Section',
+                'choice_label' =>'designation_section'
+                ));
     }
     
     /**

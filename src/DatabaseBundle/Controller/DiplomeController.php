@@ -5,7 +5,8 @@ namespace DatabaseBundle\Controller;
 use DatabaseBundle\Entity\Diplome;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Diplome controller.
@@ -20,16 +21,14 @@ class DiplomeController extends Controller
      * @Route("/", name="diplome_index")
      * @Method("GET")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
         $diplomes = $em->getRepository('DatabaseBundle:Diplome')->findAll();
-        $diplomesPaginated = $this->get('knp_paginator')->paginate ($diplomes,$request->query->get('page', 1),10);
-
-
+        
         return $this->render('diplome/index.html.twig', array(
-            'diplomes' => $diplomesPaginated,
+            'diplomes' => $diplomes,
         ));
     }
 

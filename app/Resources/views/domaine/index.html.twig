@@ -1,21 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    
     <h1>Domaines list</h1>
 
-    <table>
+    <table class="table" id="domaines">
         <thead>
             <tr>
-                <th>Designation</th>
-                <th>Id</th>
+                <th>Designationdomaine</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
+            <tr class="text-center" >{{ knp_pagination_render(domaines) }} </tr>
         {% for domaine in domaines %}
             <tr>
-                <td><a href="{{ path('domaine_show', { 'id': domaine.id }) }}">{{ domaine.designation }}</a></td>
-                <td>{{ domaine.id }}</td>
+                
+                <td><a href="{{ path('domaine_show', { 'id': domaine.id }) }}">{{ domaine.designationDomaine }}</a></td>
                 <td>
                     <ul>
                         <li>
@@ -30,7 +31,7 @@
         {% endfor %}
         </tbody>
     </table>
-<div class="">{{ knp_pagination_render(domaines) }}</div>
+
     <ul>
         <li>
             <a href="{{ path('domaine_new') }}">Create a new domaine</a>
